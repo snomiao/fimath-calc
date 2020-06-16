@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: '雪星的金融数学计算器 v2.0',
+      title: '雪星的金融数学计算器 v2.0 - 雪星实验室',
       v: 'n=15, i=5%, m=12',
       i: '[1000 a(10,i), 800 a(10,i) + vi(i) * Ia(9,i) * ((1239.1-800)/9) ]',
     };
@@ -77,16 +77,24 @@ class App extends Component {
       i = this.state.i + code;
     }
     this.input(i)
+    this.nameInput.focus()
   }
   render() {
     return (
       <div>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossOrigin="anonymous" />
-        <h1>{this.state.name}</h1>
+        <title>{this.state.title}</title>
+        <h1>{this.state.title}</h1>
         预定义变量：
         <div class="codeInput var"><input value={this.state.v} onChange={e=>this.inputV(e)} autocomplete/></div>
-        输：
-        <div class="codeInput"><input value={this.state.i} onChange={e=>this.input(e)} autocomplete/></div>
+        输入：
+        <div class="codeInput">
+        <input value={this.state.i}
+          onChange={e=>this.input(e)}
+          autocomplete="on"
+          ref={(input)=>{ this.nameInput = input}} 
+          />
+        </div>
         {
         // 公式输出：<div class="fomularOutput"><BlockMath>{this.state.o}</BlockMath></div>
         }

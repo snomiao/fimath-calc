@@ -21,7 +21,7 @@ let ac       = (n, i)     => a(n, i)*i/dei(i)
 let sc       = (n, i)     => s(n, i)*i/dei(i)
 // 期末付永续年金
 let ainf     = (i)        => 1 / i
-let ainfm    = (i)        => 1 / im
+let ainfm    = (im)       => 1 / im
 let acinf    = (i)        => 1 / dei(i)
 // 期初付年金
 let _a       = (n, i)     => (1+i)*a (n, i)
@@ -45,7 +45,7 @@ let Icac     = (n, i)     => (_ac(n, i)-n*vi(i)**n)     /dei(i)
 let Icsc     = (n, i)     => (_sc(n, i)-n)              /dei(i)
 // 期末付递增永续年金
 let Iainf    = (i)        => ainf (i)  /d(i)
-let Iainfm   = (i)        => ainfm(im) /d(i)
+let Iainfm   = (im, m)    => ainfm(im) /d(iim(im))
 let Iacinf   = (i)        => acinf(i)  /d(i)
 let Icacinf  = (i)        => 1/d(i)    /d(i)
 // 期末付递减年金
