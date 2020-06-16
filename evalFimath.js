@@ -81,6 +81,8 @@ let D_ac     = (n, i)     => (1+i)        *Dac (n, i)
 let D_sc     = (n, i)     => (1+i)        *Dsc (n, i)    
 let Dc_ac    = (n, i)     => (1+i)        *Dcac(n, i)    
 let Dc_sc    = (n, i)     => (1+i)        *Dcsc(n, i)    
+// 债券价格
+
 
 const evalFimath = function(code){
   // define vars in non strict mode

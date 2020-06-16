@@ -1,11 +1,12 @@
 var 备用 = `
-\\text{变量输入}
-<< var i= ;  => \\text{var i}= ;
-<< var n= ;  => \\text{var n}= ;
-<< var m= ;  => \\text{var m}= ;
 `
 export const mathList = `
-
+\\text{变量定义}
+<< i=0,=> \\text{i}=\\cdots
+<< n=0,=> \\text{n}=\\cdots
+<< m=0,=> \\text{m}=\\cdots
+<< r=0,=> \\text{r}=\\cdots
+<< F=0,=> \\text{F}=\\cdots
 \\text{利率转换}
 id(d)        => {id}{\\left({d}\\right)}=\\frac{d}{{{1}-{d}}}
 iv(v)        => {iv}{\\left({v}\\right)}={d}{v}\\frac{{{v}}}{{{1}-{d}{v}{\\left({v}\\right)}}}
@@ -88,4 +89,11 @@ D_ac(n,i)    => {D}_{{a}}{c}{\\left({n},{i}\\right)}={\\left({1}+{i}\\right)}\\c
 D_sc(n,i)    => {D}_{{s}}{c}{\\left({n},{i}\\right)}={\\left({1}+{i}\\right)}\\cdot{D}{s}{c}{\\left({n},{i}\\right)}
 Dc_ac(n,i)   => {D}{c}_{{a}}{c}{\\left({n},{i}\\right)}={\\left({1}+{i}\\right)}\\cdot{D}{c}{a}{c}{\\left({n},{i}\\right)}
 Dc_sc(n,i)   => {D}{c}_{{s}}{c}{\\left({n},{i}\\right)}={\\left({1}+{i}\\right)}\\cdot{D} \\csc{{\\left({n},{i}\\right)}}
+\\text{债券价格}
+(r*F*a(n,i)+C*v^n)   => \\text{基本公式}     P=rF a{(n,i)}+C v^n 
+(r*F*s(n,i)+C)       => \\text{基本公式的终值} S=rF s{(n,i)}+C
+(C+(r*F-i*C)*a(n,i)) => \\text{溢价公式}     P=C+(r F-i C) a_{n|}
+(C+(r*F-i*C)*a(n,i)) => \\text{溢价公式}     P=C \\left(1+(g-i) a_{n|} \\right)
+(G+(C-G)*vi(i)^n)    => \\text{基价公式}     P=G+{(C-G)}*v^n
+(g/i*(C-K)+K)        => \\text{Makeham公式} P=\\frac{g}{i}{\\left(C-K\\right)}+K
 `
