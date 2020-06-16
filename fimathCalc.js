@@ -103,44 +103,44 @@ class FimathCalc extends Component {
         <title>{this.state.title}</title>
         <h1>{this.state.title}</h1>
         {
-          //预定义变量：<div class="codeInput var"><input value={this.state.v} onChange={e=>this.inputV(e)} autocomplete/></div>
+          //预定义变量：<div className="codeInput var"><input value={this.state.v} onChange={e=>this.inputV(e)} autoComplete/></div>
         }
-        <h3>代码输入：</h3>
-        <div class="codeInput">
+        <h3>算式输入：</h3>
+        <div className="codeInput">
           <textarea value={this.state.i}
             onChange={e=>this.input(e)}
-            autocomplete="on"
+            autoComplete="on"
             ref={(input)=>{ this.nameInput = input}} 
             />
         </div>
         {/* <h3>公式输出：</h3> */}
-        {/* <div class="fomularOutput"><BlockMath>{this.state.o}</BlockMath></div> */}
+        {/* <div className="fomularOutput"><BlockMath>{this.state.o}</BlockMath></div> */}
         <h3>数据输出：</h3>
-        <div class="codeOutput"><code>{this.state.outJSON}</code></div>
+        <div className="codeOutput"><code>{this.state.outJSON}</code></div>
         {/* <h3>代码输出：</h3> */}
-        {/* <div class="codeOutput"><code>{this.state.outString}</code></div> */}
+        {/* <div className="codeOutput"><code>{this.state.outString}</code></div> */}
 
         <h3>快速输入：</h3>
         {
           mathList.trim().split(/\r?\n/g)
-            .map(line=>
-              line.startsWith("\\text{") ? (<BlockMath>{line}</BlockMath>) : ((line)=>{
+            .map((line, index)=>
+              line.startsWith("\\text{") 
+              ?  (<BlockMath key={index}>{line}</BlockMath>) 
+              : ((line)=>{
                 var [code, math] = line.split("=>")
                 return ( 
-                  <button class="fomular" onClick={()=>this.appendCode(code)}>
-                    <InlineMath math={'\\displaystyle'+math} />
+                  <button className="fomular" onClick={()=>this.appendCode(code)}>
+                    <InlineMath key={index} math={'\\displaystyle'+math} />
                   </button>
                 )
               }
             )(line))
         }
         <h3>注意事项：</h3>
-        需要注意的就是它有变量污染的问题……
-        你先打个i=1然后删掉，然后它会记住这个i。
-        如果需要清理这些个变量的话，刷新一下页面就可以了。
+        <p>需要注意的就是它有变量污染的问题……比如你先打个i=1然后删掉，然后它会记住这个i。如果需要清理这些个变量的话，刷新一下页面就可以了。</p>
+
         <h3>关于</h3>
-        制作 by 雪星实验室
-        
+        <p>制作 by 雪星实验室 (20200616)</p>
       </div>
     );
   }
