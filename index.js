@@ -27,20 +27,21 @@ class App extends Component {
       // 2(   2w
       // )(   w(    )w
       // .replace(/(\d)(\s+)(\d)/g   ,(_,l,s,r)=>l+"*"+r)
-      .replace(/(\d)(\s*)(\(|[a-z])/ig,(_,l,s,r)=>l+"*"+r)
-      .replace(/(\))(\s*)(\()/g   ,(_,l,s,r)=>l+"*"+r)
+      .replace(/(\d)(\s+)(\(|[a-z])/ig,(_,l,s,r)=>l+"*"+r)
+      .replace(/(\))(\s+)(\()/g   ,(_,l,s,r)=>l+"*"+r)
       // .replace(/(\w)(\s*?)(\()/g   ,(_,l,s,r)=>l+"*"+r)
-      .replace(/(\))(\s*)(\w)/g   ,(_,l,s,r)=>l+"*"+r)
+      .replace(/(\))(\s+)(\w)/g   ,(_,l,s,r)=>l+"*"+r)
       // .replace(/(\w)(\s+?)(\w)/g   ,(_,l,s,r)=>l+"*"+r)
       // 幂运算转换
       .replace(/\^/g,()=>"**")
       // 百分号转换
       .replace(/(\d+(?:\.?\d+)?)%/g,(_,num)=>"("+num+"*0.01)")
       // ~转成+号
-      .replace(/~/哼哼哼哼，g,(_,num)=>"("+num+"*0.01)")
+      .replace(/~/g,(_,num)=>"("+num+"*0.01)")
       // 把var转回来
       // .replace(/var\((.*?)\);/g,(_,num)=>"("+num+"*0.01)")
-    console.log(code)
+    code = "(()=>("+code+"))()"
+    console.log('evalFimath: ', code)
     return evalFimath(code)
   }
   inputV(e=undefined){
@@ -50,15 +51,20 @@ class App extends Component {
     this.input();
   }
   input(e=undefined){
-    var vv = "var " + this.state.v.trim() + ";";
+    var vv = "" + this.state.v.trim() + ", ";
     var i = e ? (e.target ? (e.target.value||"") : e) : this.state.i;
     var o, o2;
     try{o=this.eval(vv+i)}catch(err){o=err.toString()}
-    try{o2=this.eval(i)}catch(err){o2=err.toString()}
-    if(o===undefined){o="undefined"}
-    if(o2===undefined){o2="undefined"}
-    console.log(10, o, o2)
-    o = o || o2;
+    if(o===undefined){
+      try{o2=this.eval(i)}catch(err){o2=err.toString()}
+      if(o2===undefined){o2="undefined"}
+      o = o2
+    }
+    console.log("code out")
+    console.log('i1', vv+i)
+    console.log('o1', o)
+    console.log('i2', i)
+    console.log('o2', o2)
     // o=o.toString();
     o = JSON.stringify(o)
     this.setState({i, o})
