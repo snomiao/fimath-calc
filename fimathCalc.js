@@ -15,7 +15,7 @@ class FimathCalc extends Component {
     };
   }
   componentDidMount() {
-    var hashFormular = decodeURIComponent(window.location.hash.slice(1))
+    var hashFormular = decodeURIComponent(window.location.hash.slice(1,-1)) // 去头去尾
     console.log(hashFormular)
     this.state.i=hashFormular
     this.input()
@@ -51,26 +51,23 @@ class FimathCalc extends Component {
     this.input();
   }
   input(e=undefined){
-    // var vv = "" + this.state.v.trim() + ", ";
-    var vv
     var i = e ? (e.target ? (e.target.value||"") : e) : this.state.i;
-    var o, o2;
-    try{o=this.eval(vv+i)}catch(err){o=err.toString()}
-    if(o===undefined){
-      try{o2=this.eval(i)}catch(err){o2=err.toString()}
-      if(o2===undefined){o2="undefined"}
-      o = o2
-    }
-    console.log("code out")
-    console.log('i1', vv+i)
-    console.log('o1', o)
-    console.log('i2', i)
-    console.log('o2', o2)
-    // o=o.toString();
+    this.setState({i})
+    window.location.hash=encodeURI("#"+i+"#")
+
+    // eval
+    var o;
+    try{o=this.eval(i)}catch(err){o=err.toString()}
+    if(o===undefined){ o = ""}
+    // console.log("code out")
+    // console.log('i', i)
+    // console.log('o', o)
+
+    // out
     var outJSON = JSON.stringify(o)
     var outString = o.toString()
-    window.location.hash=encodeURI(i)
-    this.setState({i, outString, outJSON})
+    this.setState({outString, outJSON})
+    
     // 自动设定高度
     this.nameInput.style.height = 'auto'; 
     this.nameInput.style.height = this.nameInput.scrollHeight + 'px'; 
@@ -88,13 +85,12 @@ class FimathCalc extends Component {
   render() {
     return (
       <div>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossOrigin="anonymous" />
         <title>{this.state.title}</title>
         <h1>{this.state.title}</h1>
         {
           //预定义变量：<div class="codeInput var"><input value={this.state.v} onChange={e=>this.inputV(e)} autocomplete/></div>
         }
-        输入：
+        <h3>Javascript 代码输入</h3>
         <div class="codeInput">
         <textarea value={this.state.i}
           onChange={e=>this.input(e)}
@@ -105,9 +101,14 @@ class FimathCalc extends Component {
         {
         // 公式输出：<div class="fomularOutput"><BlockMath>{this.state.o}</BlockMath></div>
         }
-        数据输出：<div class="codeOutput"><code>{this.state.outJSON}</code></div>
-        代码输出：<div class="codeOutput"><code>{this.state.outString}</code></div>
-        快速输入：
+        
+        <h3>数据输出：</h3>
+        <div class="codeOutput"><code>{this.state.outJSON}</code></div>
+        
+        <h3>代码输出：</h3>
+        <div class="codeOutput"><code>{this.state.outString}</code></div>
+
+        <h3>快速输入：</h3>
         {
           mathList.trim().split(/\r?\n/g)
             .map(line=>
@@ -121,6 +122,10 @@ class FimathCalc extends Component {
               }
             )(line))
         }
+        <h3>注意事项：</h3>
+        需要注意的就是它有变量污染的问题……
+        你先打个i=1然后删掉，然后它会记住这个i。
+        如果需要清理这些个变量的话，刷新一下页面就可以了。
       </div>
     );
   }
