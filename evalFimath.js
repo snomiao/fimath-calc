@@ -82,4 +82,11 @@ let D_sc     = (n, i)     => (1+i)        *Dsc (n, i)
 let Dc_ac    = (n, i)     => (1+i)        *Dcac(n, i)    
 let Dc_sc    = (n, i)     => (1+i)        *Dcsc(n, i)    
 
-export const evalFimath = (str) => eval(str)
+const evalFimath = function(code){
+  // define vars in non strict mode
+  try{(0,eval)(code)}catch(e){}
+  // and return the value in strict mode in this module
+  return eval(code)
+};
+// const evalFimath = (str)=>eval("i=0.1, a(1,i)");
+export default evalFimath;
