@@ -1,0 +1,43 @@
+h1, p {
+  font-family: Lato;
+}
+.codeInput input{
+  width: 100%;
+  line-height: 2em;
+  font-size: 1.5em;
+  border: none;
+  margin: 0.5em 0;
+  padding: 0;
+  box-shadow: 0 1px 0 #000;
+}
+.varInput{
+  display: inline-block;
+}
+.varInput input{
+  width: 5em;
+  line-height: 2em;
+  font-size: 1.5em;
+  border: none;
+  margin: 0.5em 0;
+  padding: 0;
+  box-shadow: 0 1px 0 #000;
+}
+.codeOutput code{
+  width: 100%;
+  display: block;
+  text-align: center;
+  line-height: 2em;
+  font-size: 1.5em;
+  border: none;
+  margin: 0.5em 0;
+  padding: 0;
+  box-shadow: 0 1px 0 #000;
+}
+.fomularOutput{
+  display: block;
+  border: 2px solid #000;
+}
+button{
+  margin: 0.2em;
+  line-height: 3em;
+}
