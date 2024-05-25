@@ -7,6 +7,9 @@ export const mathList = `
 << m=0,=> \\text{m}=\\cdots
 << r=0,=> \\text{r}=\\cdots
 << F=0,=> \\text{F}=\\cdots
+\\text{内部收益率計算}
+irrx(100, 40, 3)     => {irrx}([-100,40,40,40])
+irr([-100,40,40,40]) => {irr}([-100,40,40,40])
 \\text{利率转换}
 id(d)        => {id}{\\left({d}\\right)}=\\frac{d}{{{1}-{d}}}
 iv(v)        => {iv}{\\left({v}\\right)}={d}{v}\\frac{{{v}}}{{{1}-{d}{v}{\\left({v}\\right)}}}

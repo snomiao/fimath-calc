@@ -121,26 +121,30 @@ class FimathCalc extends Component {
         {/* <div className="codeOutput"><code>{this.state.outString}</code></div> */}
 
         <h3>快速输入：</h3>
+        <div className='quick-btn-list'>
+
         {
           mathList.trim().split(/\r?\n/g)
-            .map((line, index)=>
-              line.startsWith("\\text{") 
-              ?  (<BlockMath key={index}>{line}</BlockMath>) 
-              : ((line)=>{
-                var [code, math] = line.split("=>")
-                return ( 
-                  <button className="fomular" onClick={()=>this.appendCode(code)}>
-                    <InlineMath key={index} math={'\\displaystyle'+math} />
+          .map((line, index)=>
+            line.startsWith("\\text{") 
+          ?  (<BlockMath key={index}>{line}</BlockMath>) 
+          : ((line)=>{
+            var [code, math] = line.match(/(.*?)=>(.*)/).slice(1)
+            return ( 
+              <button className="fomular" onClick={()=>this.appendCode(code)}>
+                    <InlineMath key={line} >{'\\displaystyle'+math}</InlineMath>
                   </button>
                 )
               }
             )(line))
-        }
+          }
+          </div>
         <h3>注意事项：</h3>
         <p>需要注意的就是它有变量污染的问题……比如你先打个i=1然后删掉，然后它会记住这个i。如果需要清理这些个变量的话，刷新一下页面就可以了。</p>
 
         <h3>关于</h3>
         <p>制作 by 雪星实验室 (20200616)</p>
+        <p>2024-05-26 更新: 追加内部収益率函数</p>
       </div>
     );
   }

@@ -1,3 +1,15 @@
+import IRR from './IRR.js'
+
+// 内部收益率 IRRX(100, 40, 3) == IRR([-100,40,40,40]) == 0.09701025740327303
+let irr = IRR
+let irrx = function(C, p, n) {
+  const CArray = []
+  CArray.push(-C)
+  for (let i = 0; i < n; i++) {
+    CArray.push(p)
+  }
+  return IRR(CArray)
+}
 
 // 利率转换
 let id       = (d)        => d / (1 - d)
@@ -82,7 +94,6 @@ let D_sc     = (n, i)     => (1+i)        *Dsc (n, i)
 let Dc_ac    = (n, i)     => (1+i)        *Dcac(n, i)    
 let Dc_sc    = (n, i)     => (1+i)        *Dcsc(n, i)    
 // 债券价格
-
 
 const evalFimath = function(code){
   // define vars in non strict mode

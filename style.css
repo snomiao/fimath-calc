@@ -1,5 +1,22 @@
+body{
+  padding: 1em;
+}
+.katex-html{
+  display: none;
+}
 h1, p {
   font-family: Lato;
+}
+.quick-btn-list{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.quick-btn-list>div{
+  margin-top: 2em;
+  margin-top: 1em;
+  flex-grow: 1;
+  width: 100%;
 }
 .codeInput input,textarea{
   /* font-family: Consolas, 黑体; */
@@ -36,6 +53,9 @@ h1, p {
   margin: 0.5em 0;
   padding: 0;
   box-shadow: 0 1px 0 #000;
+}
+.fomular{
+  max-width:100%
 }
 .fomularOutput{
   display: block;

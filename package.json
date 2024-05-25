@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@types/react": "16",
+    "@types/react-dom": "16",
+    "@types/react-katex": "^3.0.4",
     "prop-types": "^15.5.10",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "react-katex": "^2.0.2"
+    "react": "16",
+    "react-dom": "16",
+    "react-katex": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -15,6 +18,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react-scripts": "latest"
+    "react-scripts": "latest",
+    "vite": "^5.2.11"
   }
 }
