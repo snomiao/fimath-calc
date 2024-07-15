@@ -1,4 +1,5 @@
 // Copyright (c) 2012 Sutoiku, Inc. (MIT License)
+// 2024-07-16 Update: add typescript types by snomiao <snomiao@gmail.com>
 
 // Some algorithms have been ported from Apache OpenOffice:
 
@@ -23,11 +24,12 @@
  *
  *************************************************************/
 
-export default function IRR(values, guess) {
+export default function IRR(values: number[], guess: number) {
+  type IRRResult = (values: number[], dates: number[], rate: number)=> number
   // Credits: algorithm inspired by Apache OpenOffice
 
   // Calculates the resulting amount
-  var irrResult = function (values, dates, rate) {
+  var irrResult: IRRResult = function (values, dates, rate) {
     var r = rate + 1;
     var result = values[0];
     for (var i = 1; i < values.length; i++) {
@@ -37,7 +39,7 @@ export default function IRR(values, guess) {
   };
 
   // Calculates the first derivation
-  var irrResultDeriv = function (values, dates, rate) {
+  var irrResultDeriv: IRRResult = function (values, dates, rate) {
     var r = rate + 1;
     var result = 0;
     for (var i = 1; i < values.length; i++) {
@@ -48,7 +50,7 @@ export default function IRR(values, guess) {
   };
 
   // Initialize dates and check that values contains at least one positive value and one negative value
-  var dates = [];
+  var dates = [] as number[];
   var positive = false;
   var negative = false;
   for (var i = 0; i < values.length; i++) {
