@@ -1,22 +1,47 @@
 {
-  "name": "fimath-calc",
-  "version": "0.0.0",
-  "private": true,
+  "name": "fimath",
+  "version": "0.0.1",
+  "author": "snomiao <snomiao@gmail.com>",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.js",
+    "types": "./index.ts"
+  },
+  "module": "index.ts",
+  "types": "./index.ts",
+  "files": [
+    "*.ts",
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build index.ts --outdir=dist && bun build:umd",
+    "build:umd": "bunx rollup dist/index.js --file dist/index.umd.js --format umd --name \"fimath\"",
+    "build:vite": "vite build",
+    "prerelease": "bun run build && bun run test",
+    "release": "bunx standard-version && git push --follow-tags && npm publish",
+    "start": "vite",
+    "test": "bun test"
+  },
   "dependencies": {
+    "@types/d3": "^7.4.3",
     "@types/react": "16",
     "@types/react-dom": "16",
     "@types/react-katex": "^3.0.4",
+    "d3": "^7.9.0",
+    "number-precision": "^1.6.0",
     "prop-types": "^15.5.10",
     "react": "16",
     "react-dom": "16",
-    "react-katex": "^3.0.1"
-  },
-  "scripts": {
-    "start": "vite",
-    "build": "vite build"
+    "react-katex": "^3.0.1",
+    "ts-toolbelt": "^9.6.0"
   },
   "devDependencies": {
+    "@types/bun": "^1.1.6",
+    "@types/jest": "^29.5.12",
     "react-scripts": "latest",
     "vite": "^5.2.11"
+  },
+  "peerDependencies": {
+    "typescript": "^5.5.3"
   }
 }
