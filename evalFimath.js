@@ -1,3 +1,5 @@
+import { equalLoanPayment } from './equalLoanPayment'
+import { equalLoanPaymentTable } from './equalLoanPaymentTable'
 import IRR from './IRR.js'
 
 // 内部收益率 IRRX(100, 40, 3) == IRR([-100,40,40,40]) == 0.09701025740327303
@@ -93,7 +95,10 @@ let D_ac     = (n, i)     => (1+i)        *Dac (n, i)
 let D_sc     = (n, i)     => (1+i)        *Dsc (n, i)    
 let Dc_ac    = (n, i)     => (1+i)        *Dcac(n, i)    
 let Dc_sc    = (n, i)     => (1+i)        *Dcsc(n, i)    
+
 // 债券价格
+let ELP = equalLoanPayment
+let ELPT = equalLoanPaymentTable
 
 const evalFimath = function(code){
   // define vars in non strict mode
