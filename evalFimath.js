@@ -96,9 +96,10 @@ let D_sc     = (n, i)     => (1+i)        *Dsc (n, i)
 let Dc_ac    = (n, i)     => (1+i)        *Dcac(n, i)    
 let Dc_sc    = (n, i)     => (1+i)        *Dcsc(n, i)    
 
-// 债券价格
+// 等額本息還款
 let ELP = equalLoanPayment
 let ELPT = equalLoanPaymentTable
+
 
 const evalFimath = function(code){
   // define vars in non strict mode

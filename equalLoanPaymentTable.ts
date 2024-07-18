@@ -5,6 +5,9 @@ NP.enableBoundaryChecking(false); // default param is true
 
 /**
  * @param [fixed=0] @see fixed
+ * 等額本息还款計算表格
+ * - [招商银行 -- 个人贷款计算器]( https://fin.paas.cmbchina.com/fininfo/calloanper )
+ * @deprecated infavor of 
  */
 export function equalLoanPaymentTable(
   p: number,
@@ -14,15 +17,15 @@ export function equalLoanPaymentTable(
 ) {
   const r = equalLoanPayment(p, n, i);
   const amounts = toFixedSplitedArray(r.total, n, precision);
-  let remain = p;
+  let remainPrincipal = p;
   const loop = amounts.map((e, index, a) => {
     /* per period interests */
-    const pi = +toRoundFixed(remain * i, 2);
+    const pi = +toRoundFixed(remainPrincipal * i, 2);
     /* per period principals */
-    const pp = a.length === index + 1 ? remain : +(e - pi).toFixed(precision);
+    const pp = a.length === index + 1 ? remainPrincipal : +(e - pi).toFixed(precision);
     const am = +toRoundFixed(pi + pp, 2);
-    remain = +(remain - pp).toFixed(precision);
-    return { am, pp, pi, remain };
+    remainPrincipal = +(remainPrincipal - pp).toFixed(precision);
+    return { am, pp, pi, remain: remainPrincipal };
   });
   return {
     amounts: loop.map((e) => e.am),

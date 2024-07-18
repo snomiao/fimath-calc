@@ -24,8 +24,8 @@
  *
  *************************************************************/
 
-export default function IRR(values: number[], guess: number) {
-  type IRRResult = (values: number[], dates: number[], rate: number)=> number
+export default function IRR(values: number[], guess = 0): number {
+  type IRRResult = (values: number[], dates: number[], rate: number) => number;
   // Credits: algorithm inspired by Apache OpenOffice
 
   // Calculates the resulting amount

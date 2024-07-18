@@ -1,6 +1,5 @@
 // references:
 // - [等额本息_百度百科]( https://baike.baidu.com/item/%E7%AD%89%E9%A2%9D%E6%9C%AC%E6%81%AF/3227456 )
-// - [招商银行 -- 个人贷款计算器]( https://fin.paas.cmbchina.com/fininfo/calloanper )
 
 /**
 - 本金: Principal
